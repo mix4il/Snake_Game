@@ -35,6 +35,7 @@ public class GameFieldController {
     }
 
     public void startGame(){
+        isNewRecord = false;
         snake.initSnake();
         score = 0;
         inGame = true;
@@ -58,6 +59,9 @@ public class GameFieldController {
                 addScore();
                 snake.addParts();
                 apple.createApple(new Position(res.getAppleX(), res.getAppleY()));
+                if(Settings.isBarrier){
+                    wall.draw(g);
+                }
             }
             else if (!Settings.isBarrier){
                 if(snake.checkCollisionSnake()){
